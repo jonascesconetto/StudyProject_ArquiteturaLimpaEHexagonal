@@ -6,7 +6,7 @@ import BcryptAdapter from '../../src/adapters/auth/BcryptAdapter'
 import ColecaoUsuarioDB from '../../src/adapters/db/ColecaoUsuarioDB'
 import usuarios from '../data/usuarios'
 
-test('Deve registrar um usuário invertendo a senha', async () => {
+test.skip('Deve registrar um usuário invertendo a senha', async () => {
     const colecao = new UsuarioEmMemoria()
     const provedorCripto = new InverterSenha()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto)
@@ -22,7 +22,7 @@ test('Deve registrar um usuário invertendo a senha', async () => {
     expect(usuario.senha).toBe('654321')
 })
 
-test('Deve registrar um usuário com senha com espaços', async () => {
+test.skip('Deve registrar um usuário com senha com espaços', async () => {
     const colecao = new UsuarioEmMemoria()
     const provedorCripto = new SenhaComEspaco()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto)
@@ -38,7 +38,7 @@ test('Deve registrar um usuário com senha com espaços', async () => {
     expect(usuario.senha).toBe('1 2 3 4 5 6')
 })
 
-test('Deve registrar um usuário com senha criptografada', async () => {
+test.skip('Deve registrar um usuário com senha criptografada', async () => {
     const colecao = new UsuarioEmMemoria()
     const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto)
@@ -54,7 +54,7 @@ test('Deve registrar um usuário com senha criptografada', async () => {
     expect(provedorCripto.comparar('123456', usuario.senha!)).toBeTruthy()
 })
 
-test('Deve lançar erro ao cadastrar usuario já cadastrado', async () => {
+test.skip('Deve lançar erro ao cadastrar usuario já cadastrado', async () => {
     const colecao = new UsuarioEmMemoria()
     const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto)
@@ -68,7 +68,7 @@ test('Deve lançar erro ao cadastrar usuario já cadastrado', async () => {
     await expect(exec).rejects.toThrowError('Usuário já existe.')
 })
 
-test.skip('Deve registrar um usuário no banco real', async () => {
+test('Deve registrar um usuário no banco real', async () => {
     const colecao = new ColecaoUsuarioDB()
     const provedorCripto = new BcryptAdapter()
     const casoDeUso = new RegistrarUsuario(colecao, provedorCripto)

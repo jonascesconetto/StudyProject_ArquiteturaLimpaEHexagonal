@@ -4,7 +4,7 @@ const transacaoRef = {
     descricao: 'Conta de luz',
     valor: -100,
     vencimento: new Date('2021-01-01'),
-    idUsuario: '777a8a4a-51c7-4d70-b01e-08bab11cf7c6',
+    idUsuario: '8448882d-4e1c-4ca3-ad1e-b31dc86d8529',
 } as Transacao
 
 export default {
