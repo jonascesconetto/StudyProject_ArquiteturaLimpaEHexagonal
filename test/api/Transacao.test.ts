@@ -23,7 +23,7 @@ test('Deve alterar uma transacao por id', async () => {
     try {
         const headers = await getAutorizationHeader()
         const resp = await axios.post(
-            `${baseUrl}/transacao/<transacao-id-aqui>`,
+            `${baseUrl}/transacao/3a89de95-e5ad-442f-96b1-3366b77d0ca5`,
             { ...transacoes.semId, valor: -173.58 },
             headers
         )
@@ -57,6 +57,7 @@ test('Deve retornar o extrato mensal + saldo consolidado', async () => {
     try {
         const headers = await getAutorizationHeader()
         const resp = await axios.get(`${baseUrl}/extrato/2021/1`, headers)
+        console.log(resp)
         expect(resp.status).toBe(200)
         expect(resp.data).toHaveProperty('transacoes')
         expect(resp.data).toHaveProperty('saldo')
